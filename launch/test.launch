@@ -22,7 +22,4 @@
   <!-- Fake AR Publisher -->
   <node pkg="ur5_moveit_perception" type="fake_ar_publisher_node" name="fake_ar_publisher_node" required="true"/>  
 
-  <!-- Path Planner -->
-  <node pkg="ur5_moveit_perception" type="path_planning_node" name="path_planning_node" output = "screen" required="true"/>  
-
 </launch>

@@ -42,6 +42,11 @@ private:
     moveit::planning_interface::MoveGroupInterface ur5_;
 
     /**
+     * @brief Plan planned path to be executed by ur5 robot.
+     */
+    moveit::planning_interface::MoveGroupInterface::Plan planner_;
+
+    /**
      * @brief Pose to calculate the of offset pose of gripper before plucking or grabbing.
      */
     geometry_msgs::Pose offset_goal;
@@ -50,11 +55,28 @@ private:
      * @brief Pose to stay when the robot is moved around in the greenhouse.
      */
     geometry_msgs::Pose home;
+
+    /**
+     * @brief Joint State to stay when the robot is moved around in the greenhouse.
+     */
+    std::map<std::string, double> jointStateHome;
+
+    /**
+     * @brief Function to execute the set target.
+     * @return true if successful else false
+     */
+    bool move();
+
 public:
     /**
      * @brief Default constructer for the UR5Control class
      */
     UR5Control();
+
+    /**
+     * @brief Constructer for the UR5Control class with custom home position
+     */
+    UR5Control(geometry_msgs::Pose);
 
     /**
      * @brief Function to move the gripper to the offset 

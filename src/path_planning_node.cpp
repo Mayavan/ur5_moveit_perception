@@ -44,7 +44,7 @@ int main(int argc, char **argv)
   ur5_moveit_perception::getTarget srv;
   if (client.call(srv))
   {
-    ROS_INFO_STREAM(srv.response.msg.pose.pose.position.x << " " << srv.response.msg.pose.pose.position.y << " " << srv.response.msg.pose.pose.position.z);
+    ROS_INFO_STREAM("Received Position: " << srv.response.msg.pose.pose.position.x << " " << srv.response.msg.pose.pose.position.y << " " << srv.response.msg.pose.pose.position.z);
   }
   else
   {
@@ -54,8 +54,8 @@ int main(int argc, char **argv)
 
   // Execute the trajectory
   UR5Control controller;
-  if(!controller.grabFruit(srv.response.msg.pose.pose))
-    return 1;
-  
+  if(!controller.grabFruit(srv.response.msg.pose.pose)) return 1;
+
+  ros::spin();
   return 0;
 }
